@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiaoshu.dao.DeviceMapper">
+  <select id="findList" resultType="deviceVo" parameterType="deviceVo">
+  		SELECT    t.typename AS tname,d.*      FROM device d,devicetype t 
+  			<where>
+  				 d.devicetypeId=t.devicetypeid
+  				 <if test="devicename!=null and devicename!=''">
+  				 and devicename like '%${devicename}%'
+  				 </if>
+  				  <if test="status!=null and status!=''">
+  				 and status = #{status}
+  				 </if>
+  			</where>
+  </select>
+</mapper>
